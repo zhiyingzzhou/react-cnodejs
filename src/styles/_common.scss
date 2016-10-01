@@ -1,0 +1,42 @@
+$colors:(white:$white,black:$black,gray:$gray,red:$red,theme:$theme);
+/*font*/
+.small-font{
+	font-size:1.2rem !important;
+}
+.normal-font {
+	font-size:1.7rem !important;
+}
+/*float*/
+.pull-left {
+	float:left
+}
+.pull-right {
+	float:right
+}
+/*text*/
+.text-center {
+	text-align:center;
+}
+
+/*page*/
+.page-content {
+	overflow-x:hidden;
+}
+
+//定义颜色
+@each $key,$val in $colors {
+	.background-#{$key} {
+		background-color:$val;
+	}
+	.#{$key}-color {
+		color:$val;
+	}
+}
+
+//用户头像
+.avatar-img {
+	width:40px;
+	height:40px;
+	border-radius:50em;
+	vertical-align:bottom;
+}

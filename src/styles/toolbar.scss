@@ -1,0 +1,9 @@
+.toolbar {
+	&:before {
+		@extend %zero-height;
+		border-bottom:1px solid $gray;
+	}
+	div.active {
+		color:$theme;
+	}
+}

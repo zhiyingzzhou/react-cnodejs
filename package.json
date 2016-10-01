@@ -23,6 +23,7 @@
   "author": "zhiyingzhou",
   "license": "MIT",
   "devDependencies": {
+    "autoprefixer": "^6.5.0",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.16.0",
     "babel-loader": "^6.2.5",
@@ -31,16 +32,26 @@
     "babel-preset-stage-0": "^6.16.0",
     "better-npm-run": "0.0.11",
     "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
     "deepmerge": "^1.1.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.10.0",
+    "postcss-loader": "^0.13.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1",
+    "reflux": "^0.4.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
   },
   "dependencies": {
     "lodash": "^4.16.2",
-    "react-addons-css-transition-group": "^15.3.2"
+    "react-addons-css-transition-group": "^15.3.2",
+    "whatwg-fetch": "^1.0.0"
   }
 }

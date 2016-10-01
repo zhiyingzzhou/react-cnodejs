@@ -1,0 +1,32 @@
+/*list*/
+.list-block {
+	@extend %zero-margin;
+	ul {
+		&:before,&:after {
+			@extend %zero-height;
+		}
+	}
+	li {
+		@extend %border-box;
+		padding:8px 15px;
+		border-bottom:1px solid rgba(0,0,0,.08);
+	}
+	h6 {
+	    margin-bottom: 15px;
+	    @extend %one-line;
+	}
+	.right {
+		@extend %pos-relative;
+		@extend %border-box;
+		@extend %dis-inline-block;
+		width:85%;
+		padding-left:15px;
+		top:5px;
+	}
+	p {
+		@extend %zero-margin;
+		&:last-child {
+			line-height:24px;
+		}
+	}
+}

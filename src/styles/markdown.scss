@@ -1,0 +1,35 @@
+/*markdown*/
+.markdown-text {
+	blockquote {
+		margin:0px;
+		padding: 0 15px;
+	    color: #777;
+	    border-left: 4px solid #ddd;
+	}
+	img {
+		max-width:100%;
+	}
+	pre {
+	    padding: 15px;
+	    overflow: auto;
+	    line-height: 1.45;
+	    background-color: #f7f7f7;
+	    border-radius: 3px;
+	}
+	p,h5,ul{
+		line-height:27px;
+	}
+	p {
+		word-break:break-all;
+	}
+	h1 {
+	    padding-bottom: 0.3em;
+	    line-height: 1.2;
+	    border-bottom: 1px solid #eee;
+	    @extend .normal-font;
+	}
+	a {
+		color:#4078c0;
+		word-break:break-all;
+	}
+}

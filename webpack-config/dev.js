@@ -1,3 +1,4 @@
+import webpack from 'webpack';
 import BaseConfig from './base.js';
 import deepMerge from 'deepmerge';
 

@@ -3,8 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="/src/www/styles/framework7.ios.custom.css">
 	<title><%= htmlWebpackPlugin.options.title %></title>
 	<link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css %>">
+	<style>
+		div#main-container {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
 </head>
 <body>
 	<div id="main-container"></div>
