@@ -3,17 +3,14 @@ import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 
 //Here add plugins
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const execPath = process.cwd();
-
 module.exports = {
-	entry:['./src/main.js'],
 	output:{
-		path:path.join(execPath,'./lib/'),
-		filename:'bundle.js',
-		publicPath:'/'
+		path:path.join(execPath,'./dist/'),
+		filename:'js/[name]-[hash:8].js'
 	},
 	module:{
 		loaders: [
@@ -71,20 +68,15 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			'React':'react',
 			'ReactDOM':'react-dom',
-			'Reflux':'reflux'
+			'Reflux':'reflux',
+			'store':'store2'
 		}),
 		new webpack.DefinePlugin({
 		    'process_env': {
-		    	'NODE_DEV':JSON.stringify(process.env.NODE_DEV)
+		    	'NODE_DEV':JSON.stringify(process.env.NODE_ENV)
 		    }
 		}),
-		new HtmlWebpackPlugin({
-			title:'React-Cnode.js',
-	      	filename: './index.html',
-	      	inject:false,
-			template:'./src/tpl/index.ejs'
-	    }),
-	    new ExtractTextPlugin("style.css", {
+	    new ExtractTextPlugin("css/[name]-[hash:8].css", {
             allChunks: true
         })
 	]

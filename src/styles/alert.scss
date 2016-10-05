@@ -1,0 +1,19 @@
+.alert {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+    text-align: center;
+}
+.alert-inner {
+    display: inline-block;
+    text-align: center;
+    background-color: rgba(49, 49, 49, 0.8);
+    color: $white;
+    border-radius: 3px;
+    font-size: 1.4rem;
+    padding: 15px 30px;
+    line-height: 27px;
+    margin-top: 50%;
+}

@@ -1,96 +1,157 @@
-import BasePage from '../base-page.jsx';
-import {Page,Navbar,List,ReplyItem} from 'components';
-import AnimationAction from 'actions/animation';
-import EventActions from 'actions/event';
-import TopicDetailStore from 'stores/detail';
+import {PropTypes} from 'react';
+import ListPage from '../list-page.jsx';
+import {PageContent,ReplyItem,Preloader} from 'components';
 
-export default class DetailPage extends BasePage {
+import DetailActions from 'actions/detail';
+import DetailStore from 'stores/detail';
+
+import U from 'utils/utils';
+import AssetsPath from 'config/assets-path';
+
+export default class DetailContentPage extends ListPage {
+
+	static contextTypes = {
+		router:PropTypes.object
+	}
+
+	constructor(props){
+		super(props);
+		this.state.loading = false;
+		this.state.isRender = false,
+		this.state.isDisplay = false;
+		this.state.hideDisplay = false;
+	}
+
 	componentDidMount(){
-		this.unsubscribe = TopicDetailStore.listen(this.onStatusChange.bind(this));
+		this.unsubscribe = DetailStore.listen(this.onStatusChange.bind(this));
+		this.onEnterPage();
 	}
 
 	componentWillUnmount(){
 		this.unsubscribe();
 	}
 
-	onStatusChange(state){
-		this.refs.topicContent.innerHTML = state.item.content;
-		this.setState(state);
-	}
-
-	componentDidUpdate(){
-		//页面渲染完成后隐藏indicator
-		EventActions.hideIndicator();
-		//页面渲染完成后进入页面
-		AnimationAction.forward();
+	onEnterPage(){
+		this.showLoading();
+		const {params} = this.props;
+		DetailActions.getTopicsDetail(params.topicId);
 	}
 
 	shouldComponentUpdate(nextProps,nextState){
-		return this.state != nextState;
+		return nextState != this.state;
+	}
+
+	componentWillUpdate(nextProps,nextState){
+		const {item,loading,isRender} = nextState;
+		if(item&&!loading&&!isRender){
+			this.state.isRender = true;
+			this.refs.topicContent.innerHTML = item.content;
+		}
+	}
+
+	componentDidUpdate(){
+		const {isDisplay,error,hideDisplay} = this.state;
+		if(!isDisplay){
+			this.state.isDisplay = true;
+		}
+		if(error&&!hideDisplay){
+			this.state.hideDisplay = true;
+			this.setState({
+				isDisplay:false
+			});
+		}
+	}
+
+	gotoUserPage(username){
+		const {modules} = this.state;
+		const {user} = modules;
+		this.context.router.push('/'+user.path+'/'+username);
+	}
+
+	_renderHead(){
+		const {item={}} = this.state;
+		const {author={"avatar_url":"","loginname":""}} = item;
+		
+		return (
+			<div className="header" style={{
+				background:'url('+this._renderBackground()+') no-repeat 90% #FFF',
+			}}>
+				<h3>{item.title||''}</h3>
+				<img ref="image" onError={this.onError.bind(this)} className="avatar-img" src={author["avatar_url"]} title={author.loginname} alt=""/>
+				<div className="info small-font">
+					<span>作者:&nbsp;<font className="theme-color">{author.loginname}</font></span>
+					<p>
+						<span><font className="theme-color">{item["visit_count"]||0}</font>次浏览</span>
+						<span className="pull-right">发布于: {this._renderCreated()}</span>
+					</p>
+				</div>
+			</div>
+		);
+	}
+
+	_renderCreated(){
+		const {item={}} = this.state;
+		return U.calcTime(item["create_at"],new Date()); 
+	}
+
+	__renderReplyWrapper(){
+		const {item={}} = this.state;
+		return (
+			<div>
+				<div className="reply_count">{item["reply_count"]}条回复</div>
+				<ul className="reply background-white">
+					{this._renderReplyList()}
+				</ul>
+			</div>
+		);
+	}
+
+	_renderReplyList(){
+		const self = this;
+		const {item={}} = this.state;
+		const {replies=[]} = item;
+		return 	replies.map(function(item,index){
+					return <ReplyItem 
+						key={'reply_'+index} 
+						index={index+1} 
+						item={item} 
+						onClick={self.gotoUserPage.bind(self)}
+					/>
+				});
+		
 	}
 
 	_renderBackground(){
 		const {item={}} = this.state;
 		if(item.top){
-			return './src/www/top.png';
+			return AssetsPath+'top.png';
 		}else if(item.good){
-			return './src/www/good.png';
+			return AssetsPath+'good.png';
+		}else if(item.tab){
+			return AssetsPath+item.tab+'.png';
 		}else{
-			return './src/www/'+item.tab+'.png';
-		}
-	}
-
-	_renderReply(){
-		const {item={}} = this.state;
-		const {replies=[]} = item;
-		if(replies.length > 0){
-			return 	replies.map(function(item,index){
-						return <ReplyItem key={'reply_'+index} item={item} />
-					});
-		}else{
-			return <p>暂无评论</p>
+			return '';
 		}
 	}
 
 	render(){
-		const {item={}} = this.state;
-		console.log(item);
+		const {item={},loading,isDisplay,error,requestResult} = this.state;
 		const {author={"avatar_url":"","loginname":""}} = item;
 		return (
-				<div className="page-content">
-					<div style={{
-						padding:'20px 10px',
-						background:'url('+this._renderBackground()+') no-repeat 80% #FFF',
-						borderBottom:'1px solid #e5e5e5'
-					}}>
-						<h4 style={{
-							marginBottom:'15px'
-						}}>{item.title||''}</h4>
-						<img className="avatar-img" src={author["avatar_url"]} title={author.loginname} alt=""/>
-						<div className="small-font" style={{
-							width:'85%',
-							display:'inline-block',
-							position:'relative',
-							top:'5px',
-							boxSizing:'border-box',
-							paddingLeft:'15px'
-						}}>
-							<span>作者:{author.loginname}</span>
-							<p style={{
-								margin:'0px',
-								lineHeight:'24px'
-							}}>
-								<span>{item["visit_count"]||0}次浏览</span>
-							</p>
-						</div>
+				<PageContent ref="PageContent" 
+					className="detail-content"  
+					onScroll={this.loadNextPage.bind(this,false)}
+				>
+					{loading && <Preloader />}
+					{!loading && requestResult && this._renderHead()}
+					<div ref="topicContent" 
+						className="background-white" 
+						style={{padding:'10px 10px',display:isDisplay ? 'block' : 'none'}}
+					>
 					</div>
-					<div ref="topicContent" className="background-white" style={{padding:'10px 10px'}}>
-					</div>
-					<span>{item["reply_count"]}回复</span>
-					<ul class="reply">
-						{this._renderReply()}
-					</ul>
-				</div>
+					{!loading && requestResult && this.__renderReplyWrapper()}
+					{!loading && !requestResult && this._showError(error)}
+				</PageContent>
 			);
 	}
 }

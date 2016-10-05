@@ -1,0 +1,21 @@
+.reply {
+	margin:0px;
+	padding:0px;
+	p {
+		margin:0px;
+	}
+	p.right {
+		display: inline-block;
+		box-sizing: border-box;
+		padding-left:15px;
+		width:85%;
+	}
+	.markdown-text {
+		padding:0px !important;
+		border:none !important;
+	}
+	li {
+		padding:10px;
+		border-bottom:1px solid $lightgray;
+	}
+}

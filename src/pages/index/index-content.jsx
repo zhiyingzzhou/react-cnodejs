@@ -1,17 +1,18 @@
+import {PropTypes} from 'react';
 import ListPage from '../list-page.jsx';
-import {PageContent,List,ListItem,Preloader} from 'components';
+import {PageContent,List,ListItem,Preloader,InfinitePreloader} from 'components';
 
 import IndexActions from 'actions/index';
 import IndexStore from 'stores/index';
-import DetailActions from 'actions/detail';
-
-import EventActions from 'actions/event';
 
 export default class IndexContent extends ListPage {
 
+	static contextTypes = {
+		router:PropTypes.object
+	}
+
 	constructor(props){
 		super(props);
-		this.goToDetailPage = this.goToDetailPage.bind(this);
 	}
 
 	componentDidMount(){
@@ -33,38 +34,41 @@ export default class IndexContent extends ListPage {
 	}
 
 	fetchData(options){
-		const {route} = this.props;
-		options.tab = route.params.tab;
+		const {moduleInfo} = this.state;
+		options.tab = moduleInfo.tab;
 		IndexActions.getTopics(options);
+	}
+
+	goToDetailPage(topicId){
+		const {modules} = this.state;
+		const {detail} = modules;
+		this.context.router.push('/'+detail.path+'/'+topicId);
 	}
 
 	_renderList(){
 		const {items=[]} = this.state;
 		const self = this;
 		return (
-				<List >
-					{
-						items.map(function(item,index){
-							return <ListItem key={'list_item_'+index} item={item} onClick={self.goToDetailPage.bind(self,item.id)} />
-						})
-					}
-				</List>
-			);
-	}
-
-	goToDetailPage(topicId){
-		//请求详情前显示indicator
-		EventActions.showIndicator();
-		DetailActions.getTopicsDetail(topicId);
+			<List >
+				{
+					items.map(function(item,index){
+						return <ListItem key={'list_item_'+index} item={item} 
+									onClick={self.goToDetailPage.bind(self,item.id)} 
+								/>
+					})
+				}
+			</List>
+		);
 	}
 
 	render(){
-		const {loading,loadNext,items=[]} = this.state;
+		const {loading,loadNext,items=[],requestResult=true} = this.state;
 		return (
-				<PageContent onScroll={this.loadNextPage.bind(this)} >
-					{loading&&<Preloader />}
-					{items.length > 0 &&　this._renderList()}
-					{loadNext&&<Preloader />}
+				<PageContent ref="PageContent" onScroll={this.loadNextPage.bind(this)} >
+					{loading && <Preloader />}
+					{items.length > 0 && !loading &&　this._renderList()}
+					{loadNext && <InfinitePreloader />}
+					{!requestResult && this._renderError()}
 				</PageContent>
 			);
 	}

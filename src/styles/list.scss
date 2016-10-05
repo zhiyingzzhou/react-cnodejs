@@ -1,30 +1,28 @@
 /*list*/
 .list-block {
-	@extend %zero-margin;
 	ul {
-		&:before,&:after {
-			@extend %zero-height;
-		}
+		margin: 0px;
+		padding: 0px;
+		background-color: $white;
 	}
 	li {
-		@extend %border-box;
-		padding:8px 15px;
-		border-bottom:1px solid rgba(0,0,0,.08);
+		padding:12px 15px;
+		border-bottom:1px solid $lightgray;
 	}
-	h6 {
+	h4 {
 	    margin-bottom: 15px;
 	    @extend %one-line;
 	}
 	.right {
-		@extend %pos-relative;
-		@extend %border-box;
-		@extend %dis-inline-block;
+		position: relative;
+		display: inline-block;
+		box-sizing: border-box;
 		width:85%;
 		padding-left:15px;
-		top:5px;
+		top:2px;
 	}
 	p {
-		@extend %zero-margin;
+		margin:0px;
 		&:last-child {
 			line-height:24px;
 		}

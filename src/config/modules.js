@@ -1,38 +1,50 @@
+//请勿改变key值
+
 module.exports = {
 	all:{
-		path:'/',
-		icon:'icon-quanbu',
+		path:'all',
+		icon:'icon-all',
 		title:'全部',
 		tab:'all'
 	},
 	good:{
-		path:'/good',
+		path:'good',
 		icon:'icon-good',
 		title:'精华',
 		tab:'good'
 	},
 	share:{
-		path:'/share',
-		icon:'icon-fenxiang',
+		path:'share',
+		icon:'icon-share',
 		title:'分享',
 		tab:'share'
 	},
 	ask:{
-		path:'/ask',
-		icon:'icon-wenda',
+		path:'ask',
+		icon:'icon-ask',
 		title:'问答',
 		tab:'ask'
 	},
 	job:{
-		path:'/job',
-		icon:'icon-zhaopin',
+		path:'job',
+		icon:'icon-job',
 		title:'招聘',
 		tab:'job'
 	},
-	more:{
-		path:'/more',
-		icon:'icon-more',
-		title:'更多'
+	detail:{
+		path:'detail',
+		title:'主题',
+		params:'/:topicId'
+	},
+	user:{
+		path:'user',
+		title:'用户信息',
+		params:'/:username'
+	},
+	login:{
+		path:'login',
+		icon:'icon-login',
+		title:'登录'
 	},
 	Nf:{
 		title:'404'

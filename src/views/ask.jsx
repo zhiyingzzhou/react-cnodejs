@@ -1,4 +1,4 @@
-import BaseView from './base-view';
+import ListView from './list-view';
 
-export default class AskView extends BaseView {
+export default class AskView extends ListView {
 }

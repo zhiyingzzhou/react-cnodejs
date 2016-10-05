@@ -1,27 +1,4 @@
-$colors:(white:$white,black:$black,gray:$gray,red:$red,theme:$theme);
-/*font*/
-.small-font{
-	font-size:1.2rem !important;
-}
-.normal-font {
-	font-size:1.7rem !important;
-}
-/*float*/
-.pull-left {
-	float:left
-}
-.pull-right {
-	float:right
-}
-/*text*/
-.text-center {
-	text-align:center;
-}
-
-/*page*/
-.page-content {
-	overflow-x:hidden;
-}
+$colors:(white:$white,black:$black,gray:$gray,red:$red,theme:$theme,lightgray:$lightgray);
 
 //定义颜色
 @each $key,$val in $colors {
@@ -33,10 +10,53 @@ $colors:(white:$white,black:$black,gray:$gray,red:$red,theme:$theme);
 	}
 }
 
+
+/*display*/
+.dis-block {
+	display: block;
+}
+
+/*float*/
+.pull-left {
+	float:left
+}
+.pull-right {
+	float:right
+}
+
+/*font*/
+.small-font{
+	font-size: $smallFont;
+}
+.normal-font {
+	font-size: $normalFont;
+}
+
+.large-font {
+	font-size: $bigFont;
+}
+
+/*text*/
+.text-center {
+	text-align:center;
+}
+
+/*page*/
+.page-content {
+	overflow-x:hidden;
+}
+
 //用户头像
 .avatar-img {
 	width:40px;
 	height:40px;
 	border-radius:50em;
 	vertical-align:bottom;
+	background-color:$lightgray;
+}
+
+ .divider {
+	height: 5px;
+	display: block;
+	background: #efeff4;
 }

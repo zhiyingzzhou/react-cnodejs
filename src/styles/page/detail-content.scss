@@ -1,0 +1,30 @@
+.detail-content {
+	div.header {
+	    padding: 20px 10px;
+	    border-bottom: 1px solid $lightgray;
+	}
+	h3 {
+		margin-bottom:15px;
+	}
+	.info {
+		position: relative;
+		display: inline-block;
+		box-sizing: border-box;
+		top: 5px;
+	    width: 85%;
+	    padding-left: 15px;
+	    p {
+    	    margin: 0px;
+    		line-height: 24px;
+	    }
+	}
+	
+	.reply_count {
+	    height: 44px;
+	    line-height: 44px;
+	    font-size: 1.6rem;
+	    padding-left: 15px;
+	    border-left: 4px solid $theme;
+	    color: $theme;
+	}
+}

@@ -17,13 +17,13 @@ export default class ToolbarItem extends BaseComponent {
 	}
 
 	render(){
-		const {icon='',className='',txt=''} = this.props;
+		const {href='#',icon='',className='',txt=''} = this.props;
 		return (
-		        <div href="#" className={"tab-link "+className} onClick={this.handleClick.bind(this)}>
+		        <a href={'#/'+href} className={"tab-link "+className} onClick={this.handleClick.bind(this)}>
 		            <i className={"icon "+icon}>
 		            </i>
 		            <span className="tabbar-label">{txt}</span>
-		        </div>
+		        </a>
 			);
 	}
 }

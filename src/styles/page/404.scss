@@ -1,0 +1,20 @@
+
+.NotFound {
+	overflow:hidden;
+	img,a{
+		margin-left: 50%;
+    	transform: translateX(-50%);
+	}
+	img {
+	    max-width: 80%;
+	   	
+	}
+	.tips {
+		font-size: $normalFont;
+		color: $gray;
+		text-align: center;
+	}
+	a.button {
+		width: 58%;
+	}
+}

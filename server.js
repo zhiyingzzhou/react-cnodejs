@@ -1,8 +1,11 @@
 import webpack from 'webpack';
 import webpackDevServer from 'webpack-dev-server';
 import config from './webpack.config.js';
+import openBrowser from './openBrowser';
 
 // config.entry.unshift("webpack-dev-server/client?http://localhost:3000/", "webpack/hot/dev-server");
+
+var port = 3000;
 
 new webpackDevServer(webpack(config),{
 	// hot:true,
@@ -13,7 +16,8 @@ new webpackDevServer(webpack(config),{
 	    secure: false
 	  }
 	}
-}).listen(3000,'localhost',function(err){
+}).listen(port,function(err){
 	if(err) throw err;
-	console.log('Server Start on %s:%s','localhost',3000);
+	console.log('Starting the development server...');
+	openBrowser('localhost:'+port+'/dist');
 });

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "better-npm-run dev"
+    "dev": "better-npm-run dev",
+    "build": "better-npm-run build",
+    "server": "better-npm-run server"
   },
   "betterScripts": {
     "dev": {
@@ -13,6 +15,15 @@
       "env": {
         "NODE_ENV": "development"
       }
+    },
+    "build": {
+      "command": "rimraf -fr dist/* && babel-node ./build.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "server": {
+      "command": "babel-node ./server/index.js"
     }
   },
   "keywords": [
@@ -33,18 +44,21 @@
     "better-npm-run": "0.0.11",
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
-    "deepmerge": "^1.1.0",
+    "es6-promise": "^4.0.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.10.0",
+    "opn": "^4.0.2",
     "postcss-loader": "^0.13.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1",
     "reflux": "^0.4.1",
+    "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "underscore": "^1.8.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
@@ -52,6 +66,7 @@
   "dependencies": {
     "lodash": "^4.16.2",
     "react-addons-css-transition-group": "^15.3.2",
+    "store2": "^2.3.2",
     "whatwg-fetch": "^1.0.0"
   }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" href="<%= htmlWebpackPlugin.files.publicPath %>css/framework7.ios.custom.min.css">
+	<link rel="stylesheet" href="/www/styles/icomoon.css">
+	<title><%= htmlWebpackPlugin.options.title %></title>
+	<link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css %>">
+	<style>
+		div#main-container {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="main-container"></div>
+	<script src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+	<script src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+</html>

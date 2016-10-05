@@ -1,0 +1,19 @@
+.float-button {
+    position: absolute;
+    bottom: 100px;
+    width: 50px;
+    height: 50px;
+    right: 15px;
+    /* border: 1px solid black; */
+    z-index: 5001;
+    border-radius: 50em;
+    background-color: #80bd01;
+    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23);
+    line-height: 66px;
+    text-align: center;
+    i.icon {
+        color: white;
+        font-size: 2.8rem;
+        font-weight: bold;
+    }
+}

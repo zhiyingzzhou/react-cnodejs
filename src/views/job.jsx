@@ -1,4 +1,4 @@
-import BaseView from './base-view';
+import ListView from './list-view';
 
-export default class JobView extends BaseView {
+export default class JobView extends ListView {
 }

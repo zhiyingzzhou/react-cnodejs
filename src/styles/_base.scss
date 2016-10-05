@@ -1,31 +1,3 @@
-%zero-height {
-	height:0px !important;
-}
-
-%zero-margin {
-	margin:0px;
-}
-
-%pos-absolute {
-	position:absolute;
-}
-
-%pos-relative {
-	position:relative;
-}
-
-%dis-block {
-	display:block;
-}
-
-%dis-inline-block {
-	display:inline-block;
-}
-
-%border-box {
-	box-sizing:border-box;
-}
-
 %one-line {
 	overflow: hidden;
     text-overflow: ellipsis;

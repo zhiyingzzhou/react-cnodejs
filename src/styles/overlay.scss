@@ -1,9 +1,10 @@
 .preloader-indicator-overlay {
+	position: absolute;
     left: 0;
-    top: 44px;
-    background: rgba(0,0,0,0.4);
+    bottom: 44px;
+    height: 100%;
+    width: 100%;
     z-index: 13000;
     opacity: 0;
-    @extend %pos-absolute;
-    @include setWidthAndHeight();
+    background: rgba(0,0,0,0.4);
 }

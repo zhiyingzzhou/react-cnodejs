@@ -1,0 +1,18 @@
+.toolbar-fixed .page-content{
+	padding-bottom:44px;	
+}
+
+.navbar-fixed {
+	.navbar {
+		position:absolute;
+	}
+	.page-content {
+		padding-top:44px;
+	}
+}
+
+.toolbar , .navbar {
+	left: 0px;
+	width: 100%;
+	z-index: 5001;
+}

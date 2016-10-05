@@ -1,9 +1,38 @@
+/* toolbar */
+$toolbarColor:#7f8c8d;
+$toolbarBg: #f7f7f8;
+$toolbarHeight:44px;
+
 .toolbar {
-	&:before {
-		@extend %zero-height;
-		border-bottom:1px solid $gray;
+	position: absolute;
+	bottom: 0px;
+	background-color: $toolbarBg;
+    box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+.toolbar-inner {
+	padding: 0px 10px;
+	box-sizing: border-box;
+	height: 50px;
+}
+
+a.tab-link {
+	display:inline-block;
+	height: 100%;
+	width: 20%;
+	text-align: center;
+	color:$toolbarColor;
+	i.icon {
+		display: block;
+		font-size: $bigFont;
+		line-height: 30px;
 	}
-	div.active {
-		color:$theme;
+	span {
+		font-size: $smallFont;
+		position: relative;
+		top: -1px;
+	}
+	&.active {
+		color: $theme;
 	}
 }

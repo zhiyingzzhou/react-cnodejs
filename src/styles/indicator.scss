@@ -1,13 +1,17 @@
+
 .preloader-indicator-modal {
-    @extend %pos-absolute;
+    position:absolute;
     left: 50%;
     top: 50%;
-    padding: 8px;
+    padding: 8px 10px;
     margin {
     	left:-25px;
     	top:-25px;
+        &>p {
+            margin-left:15px;
+        }
     }
-    background: rgba(0,0,0,.8);
+    background: $lightblack;
     z-index: 13500;
     border-radius: 5px;
     transform:translateX(-50%);

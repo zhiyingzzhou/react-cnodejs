@@ -4,26 +4,24 @@ export default class PageContent extends BaseComponent {
 
 	componentDidMount(){
 		const {onScroll} = this.props;
+		let isTrigger;
 		if(onScroll){
 			const pageContent = this.refs.pageContent;
-			this.handler = function(){
-				if(pageContent.scrollTop + pageContent.clientHeight > pageContent.scrollHeight - 10){
-					onScroll();
-				}
-			}
-			pageContent.addEventListener('scroll',this.handler);
+			pageContent.addEventListener('scroll',onScroll);
 		}
 	}
 
 	componentWillUnmount(){
 		const pageContent = this.refs.pageContent;
-		pageContent.removeEventListener('scroll',this.handler);
+		const {onScroll} = this.props;
+		pageContent.removeEventListener('scroll',onScroll);
 	}
 
 	render(){
+		const {className='',style,children} = this.props;
 		return (
-				<div ref="pageContent" className="page-content">
-					{this.props.children}
+				<div ref="pageContent" style={style} className={"page-content " + className}>
+					{children}
 				</div>
 			);
 	}

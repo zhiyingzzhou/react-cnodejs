@@ -1,30 +1,15 @@
-import BasePage from '../base-page.jsx';
-import {Page,Navbar} from 'components';
+import BaseFloatButton from '../base-float-button.jsx';
+import {Page,Navbar,FloatButton,IconBack} from 'components';
 import DetailContent from './detail-content';
+import ShowFloatButtonStore from 'stores/float-button';
 
-import AnimationAction from 'actions/animation';
-
-export default class DetailPage extends BasePage {
-	constructor(props){
-		super(props);
-		this.back = this.back.bind(this);
-	}
-
-	shouldComponentUpdate(nextProps,nextState){
-		return this.props != nextProps;
-	}
-
-	back(){
-		AnimationAction.back();
-	}
-
+export default class DetailPage extends BaseFloatButton {
 	render(){
-		const {className} = this.props;
-		const link = <a onClick={this.back}><i className="icon icon-back"></i></a>;
+		const {showFloatButton} = this.state;
 		return (
-				<Page className={"page navbar-fixed "+className}>
-					<Navbar left={link} center="主题" className="background-theme white-color" />
-					<DetailContent />
+				<Page className={"page navbar-fixed"}>
+					<DetailContent ref="PageContent" {...this.props} />
+					{showFloatButton && <FloatButton onClick={this.scrollTop} />}
 				</Page>
 			);
 	}
