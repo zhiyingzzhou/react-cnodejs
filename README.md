@@ -31,6 +31,7 @@
 ```
 
 目录结构
+<pre>
 .
 ├── README.md           
 ├── dist               	// 项目build目录
@@ -53,5 +54,5 @@
 ├── server.js          	// webpack-dev-server服务配置
 ├── webpack-content     // webpack config 目录
 └── webpack.config.js  	// Webpack 配置文件入口
-
+</pre>
 这里说明一下,这里使用了framework7的页面结构,一个应用只有一个views,一个views下有多个view，view下又有多个page。一个模块就是一个view，而这些view都在views下,所以在src下的views.js中定义了一个所有模块的根容器。views目录下是每个单独模块的view文件,pages中是每个view下的页面。
